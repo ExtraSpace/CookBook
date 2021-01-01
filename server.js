@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 // Import routes
 const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/authors");
+const recipeRouter = require("./routes/recipes");
 
 // Setting up mongodb with Mongoose
 mongoose.connect(process.env.MONGODB_URL, {
@@ -25,7 +26,7 @@ const app = express();
 // Apply Middlewares to the express app
 app.use(expressLayout);
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 // Set different options
 app.set("view engine", "ejs");
@@ -35,6 +36,7 @@ app.set("layout", "layouts/layout");
 // Setting up Router
 app.use("/", indexRouter);
 app.use("/authors", authorRouter);
+app.use("/recipes", recipeRouter);
 
 // Start the server
 app.listen(process.env.PORT || 3000, () => {

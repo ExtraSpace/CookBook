@@ -1,0 +1,51 @@
+<!-- Title -->
+<div>
+    <label for="title">Title</label>
+    <input name="title" type="text" title="Title of the recipe" id="title" value="<%= recipe.title %>">
+</div>
+
+<!-- Author -->
+<div>
+    <label for="author">Author</label>
+    <select name="author" id="author" title="Select name of the author">
+        <% authors.forEach(author => { %>
+        <% if (author.id === recipe.author) { %>
+        <option selected label="<%= author.name %> " value="<%= author.id %>" />
+        <% } else { %>
+        <option label="<%= author.name %> " value="<%= author.id %>" />
+        <% } %>
+        <% }) %>
+    </select>
+</div>
+
+<!-- Published Date -->
+<div>
+    <label for="publishedDate">Published Date</label>
+    <input name="publishedDate" type="date" title="Published Date" id="publishedDate" value="<%= recipe.publishedDate == null 
+            ? '' : recipe.publishedDate.toISOString().split("T")[0] %>">
+</div>
+
+<!-- Preparation Time -->
+<div>
+    <label for="preparationTime">Preparation Time</label>
+    <input name="preparationTime" type="number" title="Preparation Time" id="preparationTime"
+        value="<%= recipe.preparationTime %>">
+</div>
+
+<!-- Category -->
+<div>
+    <label for="category">Category</label>
+    <input name="category" type="text" title="Category" id="category" value="<%= recipe.category %>">
+</div>
+
+<!-- Feature Image -->
+<div>
+    <label for="featureImage"></label>
+    <input name="featureImage" type="file" name="featureImage" id="featureImage">
+</div>
+
+<!-- Description -->
+<div>
+    <label for="description">Description</label>
+    <textarea name="description" id="description"><%= recipe.description %></textarea>
+</div>

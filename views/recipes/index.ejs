@@ -1,0 +1,26 @@
+<h2>Search Recipes</h2>
+
+<form action="/recipes" method="get">
+    <div>
+        <label for="title">Title</label>
+        <input type="text" title="title" id="title" name="title" value=<%= searchOptions.title %>>
+    </div>
+    <div>
+        <label for="publishedBefore">Published Before</label>
+        <input type="date" name="publishedBefore" title="Recipes Published Before" id="publishedBefore"
+            value="<%= searchOptions.publishedBefore %> ">
+    </div>
+    <div>
+        <label for="publishedAfter">Published After</label>
+        <input type="date" name="publishedAfter" title="Recipes Published After" id="publishedAfter"
+            value="<%= searchOptions.publishedAfter %> ">
+    </div>
+    <button type="submit">Search</button>
+</form>
+<br>
+<div>
+    <% recipes.forEach(recipe => { %>
+    <img src="<%= recipe.featureImagePath %>" alt="<%= recipe.title %>" height="150" width="150">
+    <p><%= recipe.title %></p>
+    <% }) %>
+</div>
