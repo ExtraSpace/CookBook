@@ -4,9 +4,11 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const expressLayout = require("express-ejs-layouts");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 // Import routes
 const indexRouter = require("./routes/index");
+const authorRouter = require("./routes/authors");
 
 // Setting up mongodb with Mongoose
 mongoose.connect(process.env.MONGODB_URL, {
@@ -22,6 +24,7 @@ const app = express();
 
 // Apply Middlewares to the express app
 app.use(expressLayout);
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 app.use(express.static("public"));
 
 // Set different options
@@ -31,6 +34,7 @@ app.set("layout", "layouts/layout");
 
 // Setting up Router
 app.use("/", indexRouter);
+app.use("/authors", authorRouter);
 
 // Start the server
 app.listen(process.env.PORT || 3000, () => {
